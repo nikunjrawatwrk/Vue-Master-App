@@ -26,7 +26,10 @@
           <div class="flex justify-between items-center pb-4">
             <p class="text-2xl font-bold">Your Account</p>
             <!-- Modal Close Button -->
-            <div class="modal-close cursor-pointer z-50">
+            <div
+              class="modal-close cursor-pointer z-50"
+              v-on:click="closeAuthModal"
+            >
               <i class="fas fa-times"></i>
             </div>
           </div>
@@ -153,13 +156,19 @@
 </template>
 
 <script>
-import { mapState } from "pinia";
+import { mapState, mapWritableState } from "pinia";
 import useModalStore from "@/stores/modal";
 
 export default {
   name: "AppAuth",
   computed: {
     ...mapState(useModalStore, ["hiddenClass"]),
-  }
+    ...mapWritableState(useModalStore, ["isOpen"]),
+  },
+  methods: {
+    closeAuthModal() {
+      this.isOpen = !this.isOpen;
+    },
+  },
 };
 </script>
