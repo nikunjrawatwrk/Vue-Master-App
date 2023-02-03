@@ -163,11 +163,13 @@ export default {
   name: "AppAuth",
   computed: {
     ...mapState(useModalStore, ["hiddenClass"]),
-    ...mapWritableState(useModalStore, ["isOpen"]),
+    ...mapWritableState(useModalStore, {
+      modalVisibility: "isOpen",
+    }),
   },
   methods: {
     closeAuthModal() {
-      this.isOpen = !this.isOpen;
+      this.modalVisibility = !this.modalVisibility;
     },
   },
 };
