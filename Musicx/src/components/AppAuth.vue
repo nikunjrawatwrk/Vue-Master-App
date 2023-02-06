@@ -88,7 +88,12 @@
             </button>
           </form>
           <!-- Registration Form -->
-          <vee-form v-show="showRegisterTab" :validation-schema="schema">
+          <vee-form
+            v-show="showRegisterTab"
+            :validation-schema="schema"
+            @submit="register"
+            :initial-values="userData"
+          >
             <!-- Name -->
             <div class="mb-3">
               <label class="inline-block mb-2">Name</label>
@@ -208,11 +213,17 @@ export default {
         country: "",
         tos: "required",
       },
+      userData: {
+        country: "USA",
+      },
     };
   },
   methods: {
     closeAuthModal() {
       this.modalVisibility = !this.modalVisibility;
+    },
+    register(values) {
+      console.log(values);
     },
   },
 };
