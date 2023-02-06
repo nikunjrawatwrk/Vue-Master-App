@@ -168,7 +168,7 @@
                 class="w-4 h-4 float-left -ml-6 mt-1 rounded"
               />
               <label class="inline-block">Accept terms of service</label>
-              <ErrorMessage class="text-red-600" name="tos" />
+              <br /><ErrorMessage class="text-red-600" name="tos" />
             </div>
             <button
               type="submit"
@@ -211,7 +211,7 @@ export default {
         password: "min:5|max:50|required",
         confirm_password: "required|confirmed:@password",
         country: "",
-        tos: "required",
+        tos: "tos",
       },
       userData: {
         country: "USA",

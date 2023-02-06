@@ -3,6 +3,7 @@ import {
   Field as VeeField,
   defineRule,
   ErrorMessage,
+  configure,
 } from "vee-validate";
 import {
   required,
@@ -22,6 +23,7 @@ export default {
     app.component("ErrorMessage", ErrorMessage);
 
     defineRule("required", required);
+    defineRule("tos", required);
     defineRule("email", email);
     defineRule("min", min);
     defineRule("max", max);
@@ -29,5 +31,27 @@ export default {
     defineRule("max_value", maxVal);
     defineRule("confirmed", confirmed);
     defineRule("alpha_spaces", alphaSpaces);
+
+    configure({
+      generateMessage: (ctx) => {
+        const messages = {
+          required: `The field ${ctx.field} is required.`,
+          min: `The field ${ctx.field} is too short.`,
+          max: `The field ${ctx.field} is too long.`,
+          alpha_spaces: `The field ${ctx.field} may only contain alphanumeric charcters`,
+          email: `The field ${ctx.field} must be a valid email.`,
+          min_value: `The field ${ctx.field} is too low`,
+          max_value: `The field ${ctx.field} is too high`,
+          confirmed: `The passwords don't match`,
+          tos: `You must accept the Terms of Service`,
+        };
+
+        const message = messages[ctx.rule.name]
+          ? messages[ctx.rule.name]
+          : `The field ${ctx.field} is invalid.`;
+
+        return message;
+      },
+    });
   },
 };
