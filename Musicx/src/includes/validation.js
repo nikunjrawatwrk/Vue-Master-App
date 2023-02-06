@@ -44,6 +44,7 @@ export default {
           max_value: `The field ${ctx.field} is too high`,
           confirmed: `The passwords don't match`,
           tos: `You must accept the Terms of Service`,
+          mobile: `Enter Correct Mobile Number`,
         };
 
         const message = messages[ctx.rule.name]

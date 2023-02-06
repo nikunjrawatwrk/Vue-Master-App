@@ -44,6 +44,16 @@
       />
       <ErrorMessage class="text-red-600" name="age" />
     </div>
+    <!-- Mobile No -->
+    <div class="mb-3">
+      <label class="inline-block mb-2">Mobile</label>
+      <vee-field
+        type="tel"
+        name="mobile"
+        class="block w-full py-1.5 px-3 text-gray-800 border border-gray-300 transition duration-500 focus:outline-none focus:border-black rounded"
+      />
+      <ErrorMessage class="text-red-600" name="mobile" />
+    </div>
     <!-- Password -->
     <div class="mb-3">
       <label class="inline-block mb-2">Password</label>
@@ -113,6 +123,7 @@ export default {
         confirm_password: "required|confirmed:@password",
         country: "",
         tos: "tos",
+        mobile: "required|min:5|max:10",
       },
       userData: {
         country: "USA",
@@ -149,6 +160,7 @@ export default {
           email: values.email,
           age: values.age,
           country: values.country,
+          mobile: values.mobile,
         });
       } catch (error) {
         this.reg_in_submission = false;
@@ -157,7 +169,7 @@ export default {
         return;
       }
 
-      console.log(userCred);
+      //console.log(userCred);
       this.reg_alert_variant = "bg-green-500";
       this.reg_alert_message = "Success! Your account has been created";
     },
