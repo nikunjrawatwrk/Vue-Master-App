@@ -99,7 +99,7 @@
 </template>
 
 <script>
-import firebase from "@/includes/firebase";
+import { auth, usersCollection } from "@/includes/firebase";
 
 export default {
   name: "registerForm",
@@ -132,9 +132,24 @@ export default {
 
       let userCred = null;
       try {
-        userCred = await firebase
-          .auth()
-          .createUserWithEmailAndPassword(values.email, values.password);
+        userCred = await auth.createUserWithEmailAndPassword(
+          values.email,
+          values.password
+        );
+      } catch (error) {
+        this.reg_in_submission = false;
+        this.reg_alert_message = "An error occured, please try again.";
+        this.reg_alert_variant = "bg-red-500";
+        return;
+      }
+
+      try {
+        await usersCollection.add({
+          name: values.name,
+          email: values.email,
+          age: values.age,
+          country: values.country,
+        });
       } catch (error) {
         this.reg_in_submission = false;
         this.reg_alert_message = "An error occured, please try again.";
