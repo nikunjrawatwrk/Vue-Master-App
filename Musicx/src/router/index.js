@@ -16,8 +16,13 @@ const routes = [
   },
   {
     name: "manage",
+    alias: "/manage-music", // if we create 2 routes for single component
     path: "/manage",
     component: Manage,
+  },
+  {
+    path: "/manage-song",
+    redirect: { name: "manage" },
   },
   {
     path: "/:catchAll(.*)*",
