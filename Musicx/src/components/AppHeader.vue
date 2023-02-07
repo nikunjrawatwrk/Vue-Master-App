@@ -28,7 +28,7 @@ import useModalStore from "@/stores/modal";
 export default {
   name: "AppHeader",
   computed: {
-    ...mapStores(useModalStore), // for marge purpose we use spread opeator
+    ...mapStores(useModalStore), // for marge purpose we use spread op
   },
   methods: {
     toggleAuthModal() {

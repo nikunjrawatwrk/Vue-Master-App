@@ -110,6 +110,8 @@
 
 <script>
 import { auth, usersCollection } from "@/includes/firebase";
+import { mapWritableState } from "pinia";
+import useUserStore from "@/stores/user";
 
 export default {
   name: "registerForm",
@@ -133,6 +135,12 @@ export default {
       reg_alert_variant: "bg-blue-500",
       reg_alert_message: "Please wait! Your account is being created",
     };
+  },
+  computed: {
+    // ...mapWritableState(useUserStore, ["userLoggedIn"]),
+    ...mapWritableState(useUserStore, {
+      userLoggedInCounter: "userLoggedIn",
+    }),
   },
   methods: {
     async register(values) {
@@ -168,6 +176,8 @@ export default {
         this.reg_alert_variant = "bg-red-500";
         return;
       }
+
+      this.userLoggedInCounter = true;
 
       //console.log(userCred);
       this.reg_alert_variant = "bg-green-500";
