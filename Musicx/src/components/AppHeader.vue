@@ -29,10 +29,7 @@
               >
             </li>
             <li>
-              <a
-                class="px-2 text-white"
-                href="#"
-                @click.prevent="userStore.signOut"
+              <a class="px-2 text-white" href="#" @click.prevent="signOut"
                 >Logout</a
               >
             </li>
@@ -55,10 +52,20 @@ export default {
     ...mapStores(useModalStore, useUserStore), // for marge purpose we use spread op
   },
   methods: {
-    ...mapActions(useUserStore, ["signOut"]),
+    // ...mapActions(useUserStore, ["signOut"]),
     toggleAuthModal() {
       //console.log(this.modalStore.isOpen);
       this.modalStore.isOpen = !this.modalStore.isOpen;
+    },
+    signOut() {
+      this.userStore.signOut();
+
+      // console.log(this.$route);
+      // if the user on manage page then redirect to home
+
+      if (this.$route.name == "manage") {
+        this.$router.push({ name: "home" });
+      }
     },
   },
 };

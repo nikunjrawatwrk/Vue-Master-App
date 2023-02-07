@@ -19,6 +19,10 @@ const routes = [
     alias: "/manage-music", // if we create 2 routes for single component
     path: "/manage",
     component: Manage,
+    beforeEnter: (to, from, next) => {
+      console.log("Manage Route Gurad");
+      next();
+    },
   },
   {
     path: "/manage-song",
@@ -36,4 +40,8 @@ const router = createRouter({
   linkExactActiveClass: "text-yellow-500",
 });
 
+router.beforeEach((to, from, next) => {
+  console.log("Global Guard");
+  next();
+});
 export default router;
