@@ -1,9 +1,7 @@
 <template>
   <app-header></app-header>
 
-  <app-intro></app-intro>
-
-  <app-main-content></app-main-content>
+  <router-view></router-view>
 
   <app-player></app-player>
 
@@ -14,8 +12,6 @@
 import AppHeader from "@/components/AppHeader.vue";
 import AppAuth from "@/components/AppAuth.vue";
 import AppPlayer from "@/components/AppPlayer.vue";
-import AppMainContent from "@/components/AppMainContent.vue";
-import AppIntro from "@/components/AppIntro.vue";
 
 import { mapWritableState } from "pinia";
 import useUserStore from "@/stores/user";
@@ -35,8 +31,6 @@ export default {
     AppHeader,
     AppAuth,
     AppPlayer,
-    AppMainContent,
-    AppIntro,
   },
 };
 </script>
