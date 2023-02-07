@@ -178,17 +178,17 @@
 </template>
 
 <script>
-import useUserStore from "@/stores/user";
+// import useUserStore from "@/stores/user";
 
-export default {
-  name: "Manage",
-  beforeRouteEnter(toString, from, next) {
-    const store = useUserStore();
-    if (store.userLoggedIn) {
-      next();
-    } else {
-      next({ name: "home" }); // if user is not authenticated then redirected to homepage
-    }
-  },
-};
+// export default {
+//   name: "Manage",
+//   beforeRouteEnter(toString, from, next) {
+//     const store = useUserStore();
+//     if (store.userLoggedIn) {
+//       next();
+//     } else {
+//       next({ name: "home" }); // if user is not authenticated then redirected to homepage
+//     }
+//   },
+// };
 </script>

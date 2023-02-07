@@ -62,7 +62,6 @@ export default {
 
       // console.log(this.$route);
       // if the user on manage page then redirect to home
-
       if (this.$route.name == "manage") {
         this.$router.push({ name: "home" });
       }
