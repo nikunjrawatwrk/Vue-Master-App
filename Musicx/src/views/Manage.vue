@@ -20,6 +20,7 @@
             <CompositionItem
               v-for="song in songs"
               :key="song.docID"
+              :song="song"
             ></CompositionItem>
           </div>
         </div>
