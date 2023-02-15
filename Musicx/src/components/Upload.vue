@@ -3,6 +3,7 @@
     <div class="px-6 pt-6 pb-5 font-bold border-b border-gray-200">
       <span class="card-title">Upload</span>
       <i class="fas fa-upload float-right text-green-400 text-2xl"></i>
+      <input type="file" multiple @change="upload($event)" />
     </div>
     <div class="p-6">
       <!-- Upload Dropbox -->
@@ -56,8 +57,11 @@ export default {
     upload($event) {
       this.is_dragover = false;
 
-      const files = [...$event.dataTransfer.files];
-      console.log(files);
+      const files = $event.dataTransfer
+        ? [...$event.dataTransfer.files]
+        : [...$event.target.files];
+
+      //   console.log(files);
 
       files.forEach((file) => {
         if (file.type !== "audio/mpeg") {
@@ -112,6 +116,11 @@ export default {
         );
       });
     },
+  },
+  beforeUnmount() {
+    this.uploads.forEach((upload) => {
+      upload.task.cancel();
+    });
   },
 };
 </script>
